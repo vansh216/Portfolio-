@@ -7,11 +7,12 @@ const Navbar = () => {
      const [isOpen, setIsOpen] = useState(false);
 
 
-    const navLinks = [
+    const navLinks = [ 
     { to: "about", label: "About" },
+    { to: "skills", label: "Skills" },
     { to: "project", label: "Project" },
     { to: "experience", label: "Experience" },
-    { to: "skills", label: "Skilla" },
+    
     { to: "contact", label: "Contact" },
   ];
 
@@ -39,7 +40,7 @@ const Navbar = () => {
               duration={500}
               offset={-70}          
               spy={true}
-              activeClass="text-purple-500 underline"
+              activeClass="text-green-500  underline"
               className="cursor-pointer text-gray-100 hover:text-[#7CFF4D] text-lg"
             >
               {link.label}
@@ -68,7 +69,7 @@ const Navbar = () => {
               duration={500}
               offset={-70}
               spy={true}
-              activeClass="text-purple-500 underline"
+              activeClass="text-[#7CFF4D] underline"
               className="cursor-pointer text-gray-100 hover:text-[#7CFF4D] text-lg"
               onClick={() => setIsOpen(false)}
             >

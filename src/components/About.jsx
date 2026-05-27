@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Heading from './Heading'
 import LineBreak from './LineBreak'
 import { motion } from 'framer-motion'
+import { useEffect ,useState } from 'react'
 
 const link=[
   {to:"",linkname:"Download Resume"},
@@ -13,6 +14,16 @@ const link=[
 ]
 
 const About = () => {
+
+  const roles = ["Coder", "Developer", "Problem Solver"]
+const [currentRole, setCurrentRole] = useState(0)
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentRole((prev) => (prev + 1) % roles.length)
+  }, 2000)
+  return () => clearInterval(interval)
+}, [])
   return (
     <div id='about' className='w-full flex flex-col md:flex-row justify-between items-center md:h-screen md:px-18'>
       
@@ -29,25 +40,38 @@ const About = () => {
           </h1>
         </motion.div>
 
-        {/* I'm Coder heading */}
-        <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-        >
-          <Heading first={"I'am"} second={"Coder"} />
-        </motion.div>
+
+    <motion.div
+  initial={{ opacity: 0, x: -60 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
+  className='flex gap-3 text-5xl font-bold mt-2'
+>
+  <span className='text-white'>I'm a</span>
+  <motion.span
+    key={currentRole}
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -20 }}
+    transition={{ duration: 0.5 }}
+    className='text-[#7CFF4D] bg-clip-text '
+  >
+    {roles[currentRole]}
+  </motion.span>
+</motion.div>
 
         {/* Description */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
-          className='bg-gradient-to-r from-slate-400 to-slate-700 bg-clip-text text-transparent text-base leading-relaxed'
+          className=' bg-gray-50 bg-clip-text text-transparent text-base leading-relaxed'
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Iste magnam soluta est non quaerat suscipit illum libero. Excepturi eaque maxime,
-          doloributtons amet, pariatur tempoributtons rem cumque, maiores consequatur odit laboriosam.
+          Web Developer with experience in building responsive and scalable web applications using MongoDB, Express.js,
+React.js, and Node.js. Skilled in frontend and backend development, REST APIs, and database management, with
+knowledge of modern technologies including Express.js, Next.js, and Redis. Passionate about developing
+user-focused applications with strong problem-solving skills and proficiency in JavaScript, Tailwind CSS, and
+Git/GitHub.
         </motion.div>
 
         <LineBreak />
@@ -67,7 +91,7 @@ const About = () => {
             >
               <Link
                 to={link.to}
-                className='bg-gradient-to-r from-slate-600 to-slate-800 hover:from-slate-500 hover:to-slate-700 text-slate-200 p-2 rounded-md block transition-all duration-300'
+                className='bg-gradient-to-r from-slate-600 to-slate-800 hover:from-slate-500 hover:to-slate-700 text-slate-200 p-2 rounded-md block transition-all duration-200'
               >
                 {link.linkname}
               </Link>
